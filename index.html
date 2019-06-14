@@ -1,49 +1,137 @@
 <!DOCTYPE html>
-<html lang="en-us">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Activity 1: Basic HTML Bio</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+
+  <!-- Font Awesome CSS Icons (For cool glyphicons) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+  <!-- Style to fix the issue of text extending past card length -->
+  <style>
+    .card-body a {
+      word-break: break-all;
+    }
+
+    .articleHeadline {
+      line-height: 1.5;
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- Site Header -->
-    <header>
-        <!-- h1: the most important-->
-        <h2>Student Bio</h2>
-    </header>
+  <!-- Main Bootstrap Search -->
+  <div class="container">
 
-    <div>
-
-        <!-- Section 1: Bio-->
-        <section>
-            <!-- h2: Tier-2 Headline -->
-            <h2>David Pomarede</h2>
-
-            <!-- Image with link-->
-            <img src="https://avatars2.githubusercontent.com/u/42557494?s=460&v=4" alt="David Pomarede">
-
-            <!-- Paragraph with embeded link-->
-            <p>This is the paragraph about me, just testing it out really. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies interdum quam, et porta enim ultrices maximus. Pellentesque rutrum scelerisque sollicitudin. Etiam vitae sem iaculis metus tincidunt dignissim. Integer viverra auctor ultricies. Donec venenatis sapien risus, non ultricies velit lobortis ut. Praesent tincidunt sagittis orci vel efficitur. Donec semper consectetur bibendum. Vestibulum imperdiet sit amet arcu ut auctor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi id tincidunt leo, sit amet consequat nisl. Nulla tristique, odio non imperdiet egestas, risus nulla iaculis odio, at ornare dolor augue et leo. Morbi sagittis efficitur erat, vel tincidunt libero dignissim ut. Cras metus ligula, molestie at tellus eget, cursus placerat felis.</p>
-
-        </section>
-            <!-- Section 2: Contact Info-->
-        <section>
-            <!-- h2: Tier-2 Headline-->
-            <h2>Contact Info</h2>
-
-            <!-- Unordered List-->
-            <ul>
-                <li><strong>Email:</strong><a href="#">davidpom@gmail.com</a></li>
-                <li><strong>Github:</strong> <a href="#">DavidPomarede</a></li>
-                <li><strong>Portfolio:</strong> <a href="#">Coming Soon!</a></li>
-            </ul>
-        
-        </section>
-
+    <!-- Jumbotron for Title -->
+    <div class="jumbotron" style="background-color: #20315A ; color: white;">
+      <h1 class="text-center">
+        <strong>
+          <i class="fa fa-newspaper-o"></i> New York Times Search</strong>
+      </h1>
     </div>
+
+    <!-- Row for Searching New York Times -->
+    <div class="row">
+      <div class="col-sm-12">
+        <br>
+        <!-- First card is for handling the search parameters -->
+        <div class="card">
+          <div class="card-header">
+            <strong>
+              <i class="fa fa-list-alt"></i> Search Parameters</strong>
+          </div>
+          <div class="card-body">
+
+            <!-- Here we create an HTML Form for handling the inputs-->
+            <form role="form">
+
+              <!-- Here we create the text box for capturing the search term-->
+              <div class="form-group">
+                <label for="search">Search Term:</label>
+                <input type="text" class="form-control" id="search-term">
+              </div>
+
+              <!-- Here we capture the number of records that the user wants to retrieve  -->
+              <div class="form-group">
+                <label for="pwd">Number of Records to Retrieve:</label>
+                <select id="article-count" class="custom-select" aria-labelledby="dropdownMenuButton">
+                  <option selected value="1">1</option>
+                  <!-- Setting the option for 5 as default -->
+                  <option value="5" selected>5</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+
+              <!-- Here we capture the Start Year Parameter-->
+              <div class="form-group">
+                <label for="start-year">Start Year (Optional):</label>
+                <input type="text" class="form-control" id="start-year">
+              </div>
+
+              <!-- Here we capture the End Year Parameter -->
+              <div class="form-group">
+                <label for="end-year">End Year (Optional):</label>
+                <input type="text" class="form-control" id="end-year">
+              </div>
+
+              <!-- Here we have our final submit button -->
+              <button type="submit" class="btn btn-default" id="run-search">
+                <i class="fa fa-search"></i> Search</button>
+              <button class="btn btn-default" id="clear-all">
+                <i class="fa fa-trash"></i> Clear Results</button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- This row will handle all of the retrieved articles -->
+    <div class="row">
+      <div class="col-sm-12">
+        <br>
+
+        <!-- This card will initially be made up of a card and wells for each of the articles retrieved -->
+        <div class="card">
+
+          <!-- card Heading for the retrieved articles box -->
+          <div class="card-header">
+            <strong>
+              <i class="fa fa-table"></i> Top Articles</strong>
+          </div>
+
+          <!-- This main card will hold each of the resulting articles -->
+          <div class="card-body" id="article-section">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Region -->
+    <div class="row">
+      <div class="col-sm-12">
+
+        <!-- Line Break followed by closing -->
+        <hr>
+        <h5 class="text-center">
+          <small>Made with lots and lots of
+            <i class="fa fa-heart"></i>
+          </small>
+        </h5>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- jQuery JS -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <script src="app.js"></script>
+
 </body>
-
-
 </html>
